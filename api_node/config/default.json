@@ -1,0 +1,19 @@
+{
+  "api": {
+    "host": "http://localhost:",
+    "port": 8081,
+    "path": "/api/",
+    "version":"v1"
+  },
+  "db": {
+    "host":"mongodb://nasosung:690078@ds215208.mlab.com:",
+    "port" : "15208/todo"
+  },
+  "export": {
+    "folderName": "./export"
+  },
+  "logger": {
+    "folderName":  "./log",
+    "fileName": "info.log"
+  }
+}
