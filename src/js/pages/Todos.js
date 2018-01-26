@@ -50,6 +50,17 @@ export default class Todos extends React.Component {
     handleSubmit(event) {
 
         event.preventDefault();
+
+        let newStatus = false;
+
+        if( document.getElementById("status").value == "on"){
+            newStatus = true;
+        }else{
+            newStatus = false;
+        }
+
+        console.log(newStatus);
+
         let title = document.getElementById("name"),
             message = document.getElementById("description"),
             proprity = document.getElementById("proprity");
@@ -61,12 +72,12 @@ export default class Todos extends React.Component {
                     name: title.value,
                     description: message.value,
                     proprity: proprity.value,
-                    status: false,
+                    status: newStatus,
                 }])
             })
 
-            TodoStore.createTodo(title, message, proprity);
-            this.reloadTodos();
+            TodoStore.createTodo(title, message, proprity, newStatus);
+
             title.value = "";
             message.value = "";
             title.focus();
@@ -81,42 +92,7 @@ export default class Todos extends React.Component {
     }
 
 
-    addToDo(e) {
-
-            let title = document.getElementById("name"),
-                message = document.getElementById("description"),
-                proprity = document.getElementById("proprity"),
-                newStatus = false;
-
-            if( document.getElementById("status").value != ""){
-                 newStatus = false;
-            }else{
-                 newStatus = true;
-            }
-            if(title.value != "" && message.value != "") {
-                let newKey = this.state.todos.length+1;
-                this.setState({
-                    todos: this.state.todos.concat([{
-                        name: title.value,
-                        description: message.value,
-                        proprity: proprity.value,
-                        status: newStatus,
-                    }])
-                })
-
-                TodoStore.createTodo(title, message, proprity);
-                this.reloadTodos();
-                title.value = "";
-                message.value = "";
-                title.focus();
-            } else {
-               //alert("Vous devez remplir tous les champs");
-            }
-
-    }
-
-
-    updateToDo(e) {
+    updateToDo(e, id) {
 
         let title = document.getElementById("name"),
             message = document.getElementById("description"),
@@ -142,7 +118,7 @@ export default class Todos extends React.Component {
                 }])
             })
 
-            TodoStore.createTodo(title, message, proprity);
+            //TodoStore.createTodo(title, message, proprity);
             this.reloadTodos();
             title.value = "";
             message.value = "";
@@ -200,7 +176,7 @@ export default class Todos extends React.Component {
                                 let icon = status ? "\u2714" : "\u2716";
 
                                 return <li class="ui-state-default" key={index} >
-                                    <h5 onClick={this.changeStatus.bind(this, todo._id, todo.status)}>{todo.name} &nbsp;  {icon}</h5>
+                                    <h5 onClick={this.updateToDo.bind(this, todo._id)}>{todo.name} &nbsp;  {icon}</h5>
                                     <span class="description">{todo.description}</span><br/>
 
                                     <span className="close" onClick={this.removeToDo.bind(this, index, todo._id)}>X</span> <br />

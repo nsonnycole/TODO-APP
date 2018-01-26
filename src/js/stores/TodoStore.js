@@ -15,12 +15,13 @@ class TodoStore extends EventEmitter {
 
   }
 
-    createTodo(name, description, priority) {
+    createTodo(name, description, priority, status) {
 
         axios.post('http://localhost:8081/api/v1/todo/add/',{
             name: name.value,
             description: description.value,
-            priority: priority.value
+            priority: priority.value,
+            status: status
         })
         .then(function(response){
             console.log('saved successfully' + response);

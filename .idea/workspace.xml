@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2007c2e9-aa1c-47bc-a3a0-4585b56b3036" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/api_node/app/server.js" afterPath="$PROJECT_DIR$/api_node/app/server.js" />
-      <change beforePath="$PROJECT_DIR$/api_node/app/services/post.js" afterPath="$PROJECT_DIR$/api_node/app/services/post.js" />
       <change beforePath="$PROJECT_DIR$/api_node/log/info.log" afterPath="$PROJECT_DIR$/api_node/log/info.log" />
     </list>
     <ignored path="$PROJECT_DIR$/src/" />
@@ -16,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Todos.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Todos.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/pages/Todos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="132" column="31" lean-forward="false" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+            <state relative-caret-position="447">
+              <caret line="78" column="68" lean-forward="false" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -29,8 +27,18 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_node/app/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state relative-caret-position="-335">
+              <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TodoStore.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/stores/TodoStore.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -75,9 +83,9 @@
         <option value="$PROJECT_DIR$/api_node/app/services/post.js" />
         <option value="$PROJECT_DIR$/src/js/actions/TodoActions.js" />
         <option value="$PROJECT_DIR$/src/js/components/Todo.js" />
-        <option value="$PROJECT_DIR$/src/js/stores/TodoStore.js" />
         <option value="$PROJECT_DIR$/api_node/app/server.js" />
         <option value="$PROJECT_DIR$/src/js/pages/Todos.js" />
+        <option value="$PROJECT_DIR$/src/js/stores/TodoStore.js" />
       </list>
     </option>
   </component>
@@ -100,7 +108,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="614" />
     <option name="y" value="1" />
     <option name="width" value="759" />
@@ -144,6 +152,13 @@
               <item name="TODO-APP" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="api_node" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="TODO-APP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TODO-APP" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="api_node" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="TODO-APP" type="b2602c69:ProjectViewProjectNode" />
@@ -241,18 +256,17 @@
       <workItem from="1516879640120" duration="13996000" />
       <workItem from="1516902330597" duration="6267000" />
       <workItem from="1516911534625" duration="7643000" />
-      <workItem from="1516954349341" duration="14552000" />
+      <workItem from="1516954349341" duration="16126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53182000" />
+    <option name="totallyTimeSpent" value="54756000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="614" y="1" width="759" height="735" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3176312" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1727672" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -316,7 +330,7 @@
         <state relative-caret-position="340">
           <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,7 +640,7 @@
         <state relative-caret-position="325">
           <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -655,28 +669,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/stores/TodoStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api_node/app/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="-335">
+          <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/pages/Todos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="132" column="31" lean-forward="false" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+        <state relative-caret-position="447">
+          <caret line="78" column="68" lean-forward="false" selection-start-line="78" selection-start-column="68" selection-end-line="78" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/stores/TodoStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="26" />
           <folding />
         </state>
       </provider>
