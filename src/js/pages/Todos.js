@@ -53,13 +53,12 @@ export default class Todos extends React.Component {
 
         let newStatus = false;
 
-        if( document.getElementById("status").value == "on"){
+        if( document.getElementById("status").value != "false"){
             newStatus = true;
         }else{
             newStatus = false;
         }
 
-        console.log( document.getElementById("status").value);
 
         let title = document.getElementById("name"),
             message = document.getElementById("description"),
@@ -173,6 +172,9 @@ export default class Todos extends React.Component {
             <div class="col-md-6">
                 <div class="todolist">
                     <h1>Mes tâches</h1>
+                    <div class="todo-footer">
+                        <strong><span class="count-todos"></span></strong> {this.state.todos.length} Tâches
+                    </div>
                         <ul  id="sortable" class="list-unstyled">
                             {this.state.todos.map(function(todo, index){
                                 let icon = todo.status ? "\u2714" : "\u2716";
@@ -192,9 +194,7 @@ export default class Todos extends React.Component {
 
                         </ul>
 
-                    <div class="todo-footer">
-                        <strong><span class="count-todos"></span></strong> {this.state.todos.length} Tâches à faire
-                    </div>
+
                     <hr />
                     <button class="btn btn-info" onClick={this.reloadTodos.bind(this)}>Recharger !</button>
                 </div>
