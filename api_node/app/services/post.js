@@ -13,7 +13,7 @@ function post(req, res) {
 
   const todo = new Todo();
     todo.name = req.body.name;
-    todo.desciption = req.body.description;
+    todo.description = req.body.description;
     todo.priority = req.body.priority;
     todo.status = req.body.status;
     todo.createdAt = new Date();

@@ -13,9 +13,9 @@ export default class Todos extends React.Component {
       todos: TodoStore.getAll(),
     };
 
-    this.addToDo = this.addToDo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.removeToDo = this.removeToDo.bind(this);
-
+    this.changeStatus = this.changeStatus.bind(this);
   }
 
   componentWillMount() {
@@ -32,21 +32,48 @@ export default class Todos extends React.Component {
     });
   }
 
-    removeToDo(index) {
+    removeToDo(index, id) {
         this.setState({
             todos: this.state.todos.filter((x,i) => i != index )
         });
-        TodoStore.removeToDo(index);
+        TodoStore.removeToDo(id);
     }
 
     reloadTodos() {
     TodoActions.reloadTodos();
   }
 
+    changeStatus(id, status){
+      TodoStore.changeStatus(id,status);
+    }
+
     handleSubmit(event) {
-        // this.setState({display: this.state.value});
-        // this.state.value = '';
+
         event.preventDefault();
+        let title = document.getElementById("name"),
+            message = document.getElementById("description"),
+            proprity = document.getElementById("proprity");
+
+        if(title.value != "" && message.value != "") {
+            let newKey = this.state.todos.length+1;
+            this.setState({
+                todos: this.state.todos.concat([{
+                    name: title.value,
+                    description: message.value,
+                    proprity: proprity.value,
+                    status: false,
+                }])
+            })
+
+            TodoStore.createTodo(title, message, proprity);
+            this.reloadTodos();
+            title.value = "";
+            message.value = "";
+            title.focus();
+        } else {
+            //alert("Vous devez remplir tous les champs");
+        }
+
     }
 
     handleChange(event){
@@ -58,9 +85,14 @@ export default class Todos extends React.Component {
 
             let title = document.getElementById("name"),
                 message = document.getElementById("description"),
-                proprity = document.getElementById("proprity");
+                proprity = document.getElementById("proprity"),
+                newStatus = false;
 
-            console.log(proprity.value);
+            if( document.getElementById("status").value != ""){
+                 newStatus = false;
+            }else{
+                 newStatus = true;
+            }
             if(title.value != "" && message.value != "") {
                 let newKey = this.state.todos.length+1;
                 this.setState({
@@ -68,12 +100,12 @@ export default class Todos extends React.Component {
                         name: title.value,
                         description: message.value,
                         proprity: proprity.value,
-                        status: false,
+                        status: newStatus,
                     }])
                 })
 
                 TodoStore.createTodo(title, message, proprity);
-
+                this.reloadTodos();
                 title.value = "";
                 message.value = "";
                 title.focus();
@@ -83,6 +115,43 @@ export default class Todos extends React.Component {
 
     }
 
+
+    updateToDo(e) {
+
+        let title = document.getElementById("name"),
+            message = document.getElementById("description"),
+            proprity = document.getElementById("proprity"),
+            newStatus = false;
+
+
+        if( document.getElementById("status").value != ""){
+            newStatus = false;
+        }else{
+            newStatus = true;
+        }
+
+        console.log(newStatus);
+        if(title.value != "" && message.value != "") {
+            let newKey = this.state.todos.length+1;
+            this.setState({
+                todos: this.state.todos.concat([{
+                    name: title.value,
+                    description: message.value,
+                    proprity: proprity.value,
+                    status: newStatus,
+                }])
+            })
+
+            TodoStore.createTodo(title, message, proprity);
+            this.reloadTodos();
+            title.value = "";
+            message.value = "";
+            title.focus();
+        } else {
+            //alert("Vous devez remplir tous les champs");
+        }
+
+    }
 
 
 
@@ -115,8 +184,11 @@ export default class Todos extends React.Component {
                             <option>9</option>
                             <option>10</option>
                         </select>
+                            <br />
 
-                        <input id="checkAll"  class="btn btn-success" type="submit" onClick={this.addToDo} value="Ajouter" />
+                            <input id="status" type="checkbox"  /><label for="status">Résolu</label>
+                            <br />
+                        <input id="checkAll"  class="btn btn-success" type="submit" onClick={this.handleSubmit} value="Ajouter" />
                         </form>
                 </div>
             </div>
@@ -128,10 +200,10 @@ export default class Todos extends React.Component {
                                 let icon = status ? "\u2714" : "\u2716";
 
                                 return <li class="ui-state-default" key={index} >
-                                    <h5>{todo.name} &nbsp;  {icon}</h5>
+                                    <h5 onClick={this.changeStatus.bind(this, todo._id, todo.status)}>{todo.name} &nbsp;  {icon}</h5>
                                     <span class="description">{todo.description}</span><br/>
 
-                                    <span className="close" onClick={this.removeToDo.bind(this, index)}>X</span> <br />
+                                    <span className="close" onClick={this.removeToDo.bind(this, index, todo._id)}>X</span> <br />
 
                                     <span class="priority">{todo.priority} / 10</span>
                                     {/*<button class="btn btn-xs btn-warning pull-right">Modifier</button>*/}
@@ -144,7 +216,7 @@ export default class Todos extends React.Component {
                         <strong><span class="count-todos"></span></strong> {this.state.todos.length} Tâches à faire
                     </div>
                     <hr />
-                    <button class="btn btn-info" onClick={this.reloadTodos.bind(this)}>Reload!</button>
+                    <button class="btn btn-info" onClick={this.reloadTodos.bind(this)}>Recharger !</button>
                 </div>
             </div>
             {/*<div class="col-md-6">*/}

@@ -25,7 +25,7 @@ export default class Todo extends React.Component {
 
 
     render() {
-      const {id, status, edit, name, description, priority} = this.props;
+      const {_id, status, edit, name, description, priority} = this.props;
 
       const icon = status ? "\u2714" : "\u2716"
 
@@ -38,26 +38,7 @@ export default class Todo extends React.Component {
               </li>
           );
       }
-      if (status == true) {
-          return (
-              <li class="ui-state-default" style='background-color:green'>
-                  <div class="checkbox">
-                      <label>
-                          <input type="checkbox" value=""/>
-                          <h5>{name} &nbsp;
-                              {icon}</h5>
-                      </label>
-                      <span className="close" onClick={this.removeToDo.bind(this, {id})}>X</span>
-                      <br/>
-                      <span class="description">{description} hi</span><br/>
-                      <span class="priority">{priority} / 10</span>
-                      <button class="btn btn-xs btn-warning pull-right">Modifier</button>
-                      <br/>
-                  </div>
 
-              </li>
-          );
-      } else {
           return (
               <li class="ui-state-default">
                   <div class="checkbox">
@@ -76,7 +57,7 @@ export default class Todo extends React.Component {
 
               </li>
           );
-      }
+
   }
 
 }

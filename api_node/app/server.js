@@ -44,6 +44,7 @@ app.use(morgan('dev'));
 
 app.use((req,res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -68,17 +69,21 @@ router.route('/todos')
     .get(serviceGet.getTodos);
 
 
-router.route('/todo/add/:name/:description/:priority')
-    .post(servicePost);
-
-
 router.route('/todo/:id')
     .get(serviceGet.getTodo)
-    .put(serviceUpdate.updateTodo)
+    .put(serviceUpdate.updateTodo);
+
+router.route('/todo/add/')
+    .post(servicePost);
+
+router.route('/todo/updated/:id')
+    .put(serviceUpdate.updateTodo);
+
+router.route('/todo/remove/:id')
     .delete (serviceDelete.deleteTodo);
 
 router.route('todo/status/:id')
-    .put(serviceUpdate.updateTodo)
+    .put(serviceUpdate.updateTodo);
 
 
 
