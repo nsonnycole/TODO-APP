@@ -12,6 +12,10 @@ export default class Todos extends React.Component {
     this.state = {
       todos: TodoStore.getAll(),
     };
+
+    this.addToDo = this.addToDo.bind(this);
+    this.removeToDo = this.removeToDo.bind(this);
+
   }
 
   componentWillMount() {
@@ -28,13 +32,20 @@ export default class Todos extends React.Component {
     });
   }
 
-  reloadTodos() {
+    removeToDo(index) {
+        this.setState({
+            todos: this.state.todos.filter((x,i) => i != index )
+        });
+        TodoStore.removeToDo(index);
+    }
+
+    reloadTodos() {
     TodoActions.reloadTodos();
   }
 
-    handleSubmit(event){
-        this.setState({display: this.state.value});
-        this.state.value = '';
+    handleSubmit(event) {
+        // this.setState({display: this.state.value});
+        // this.state.value = '';
         event.preventDefault();
     }
 
@@ -42,52 +53,108 @@ export default class Todos extends React.Component {
         this.setState({value: event.target.value});
     }
 
+
+    addToDo(e) {
+
+            let title = document.getElementById("name"),
+                message = document.getElementById("description"),
+                proprity = document.getElementById("proprity");
+
+            console.log(proprity.value);
+            if(title.value != "" && message.value != "") {
+                let newKey = this.state.todos.length+1;
+                this.setState({
+                    todos: this.state.todos.concat([{
+                        name: title.value,
+                        description: message.value,
+                        proprity: proprity.value,
+                        status: false,
+                    }])
+                })
+
+                TodoStore.createTodo(title, message, proprity);
+
+                title.value = "";
+                message.value = "";
+                title.focus();
+            } else {
+               //alert("Vous devez remplir tous les champs");
+            }
+
+    }
+
+
+
+
     render() {
     const { todos } = this.state;
 
-    const TodoComponents = todos.map((todo) => {
-        return <Todo key={todo.id} {...todo}/>;
-    });
+    // const TodoComponents = todos.map((todo, index) => {
+    //     return <Todo key={todo.id} {...todo}/>;
+    // });
 
     return (
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="todolist not-done">
                     <h1>Que dois-je faire ?</h1>
-                    <form  onSubmit={this.handleSubmit.bind(this)}>
-                        <input  type="text" class="form-control add-todo" placeholder="Nouvelle tâche" />
+                        <form>
+                        <input id="name" type="text" class="form-control" placeholder="Nouvelle tâche" required />
                         <br />
-                        <textarea class="form-control" ></textarea>
+                        <textarea id="description" class="form-control" placeholder="description" required></textarea>
                          <br />
-                         <input type="text" class="form-control text-center"  min="1" max="10" />
+                        <select id="proprity" class="form-control" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
 
-                        <input id="checkAll"  class="btn btn-success" type="submit"  value="submit" />
-                    </form>
-                    <h3>{this.state.display}</h3>
-
-                        
-                        {/*<p id="checkAll">Mark all as done</p>*/}
-
+                        <input id="checkAll"  class="btn btn-success" type="submit" onClick={this.addToDo} value="Ajouter" />
+                        </form>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="todolist">
                     <h1>Mes tâches</h1>
-                    <button class="btn btn-info" onClick={this.reloadTodos.bind(this)}>Reload!</button>
-                    <ul  id="sortable" class="list-unstyled">{TodoComponents}</ul>
+                        <ul  id="sortable" class="list-unstyled">
+                            {this.state.todos.map(function(todo, index){
+                                let icon = status ? "\u2714" : "\u2716";
+
+                                return <li class="ui-state-default" key={index} >
+                                    <h5>{todo.name} &nbsp;  {icon}</h5>
+                                    <span class="description">{todo.description}</span><br/>
+
+                                    <span className="close" onClick={this.removeToDo.bind(this, index)}>X</span> <br />
+
+                                    <span class="priority">{todo.priority} / 10</span>
+                                    {/*<button class="btn btn-xs btn-warning pull-right">Modifier</button>*/}
+                                </li>
+                            }, this)}
+
+                        </ul>
+
                     <div class="todo-footer">
-                        <strong><span class="count-todos"></span></strong> 2 Items Left
+                        <strong><span class="count-todos"></span></strong> {this.state.todos.length} Tâches à faire
                     </div>
+                    <hr />
+                    <button class="btn btn-info" onClick={this.reloadTodos.bind(this)}>Reload!</button>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="todolist">
-                    <h1>Fait</h1>
-                    <ul id="done-items" class="list-unstyled">
-                        <li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
-                    </ul>
-                </div>
-            </div>
+            {/*<div class="col-md-6">*/}
+                {/*<div class="todolist">*/}
+                    {/*<h1>Fait</h1>*/}
+                    {/*<ul id="done-items" class="list-unstyled">*/}
+                        {/*<li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>*/}
+                    {/*</ul>*/}
+                {/*</div>*/}
+            {/*</div>*/}
        </div>
     );
   }

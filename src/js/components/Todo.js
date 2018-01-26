@@ -1,8 +1,10 @@
 import React from "react";
+import axios from "axios/index";
 
 export default class Todo extends React.Component {
   constructor(props) {
     super();
+      this.removeToDo = this.removeToDo.bind(this);
   }
 
     handleSubmit(event){
@@ -12,38 +14,69 @@ export default class Todo extends React.Component {
     }
 
 
-  render() {
-    const { status, edit, name, description, priority} = this.props;
-
-    const icon = status ? "\u2714" : "\u2716"
-
-    if (edit) {
-      return (
-      <li class="ui-state-default">
-          <div class="checkbox">
-              <input type="checkbox" value={name} focus="focused" />
-          </div>
-      </li>
-      );
+    setStatusToDo(id) {
+        console.log(id);
+        axios.get('http://localhost:8081/api/v1/todo/status/'+ id )
+            .then(function(response){
+                dispatcher.dispatch({type: "RECEIVE_TODOS", todos: response.data });
+            });
     }
 
-    return (
-
-    <li class="ui-state-default">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="" />
-                <h5>{name}
-                {icon}</h5>
-            </label>
-            <br />
-                <span class="description">{description}</span><br />
-                <span class="priority">{priority}</span>
-
-        </div>
-    </li>
 
 
-    );
+    render() {
+      const {id, status, edit, name, description, priority} = this.props;
+
+      const icon = status ? "\u2714" : "\u2716"
+
+      if (edit) {
+          return (
+              <li class="ui-state-default">
+                  <div class="checkbox">
+                      <input type="checkbox" value={name} focus="focused"/>
+                  </div>
+              </li>
+          );
+      }
+      if (status == true) {
+          return (
+              <li class="ui-state-default" style='background-color:green'>
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox" value=""/>
+                          <h5>{name} &nbsp;
+                              {icon}</h5>
+                      </label>
+                      <span className="close" onClick={this.removeToDo.bind(this, {id})}>X</span>
+                      <br/>
+                      <span class="description">{description} hi</span><br/>
+                      <span class="priority">{priority} / 10</span>
+                      <button class="btn btn-xs btn-warning pull-right">Modifier</button>
+                      <br/>
+                  </div>
+
+              </li>
+          );
+      } else {
+          return (
+              <li class="ui-state-default">
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox" value=""/>
+                          <h5>{name} &nbsp;
+                              {icon}</h5>
+                      </label>
+                      {/*<span className="close" onClick={this.removeToDo.bind(this, {id})}>X</span>*/}
+                      <br/>
+                      <span class="description">{description} hi</span><br/>
+                      <span class="priority">{priority} / 10</span>
+                      <button class="btn btn-xs btn-warning pull-right">Modifier</button>
+                      <br/>
+                  </div>
+
+              </li>
+          );
+      }
   }
+
 }

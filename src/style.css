@@ -47,10 +47,8 @@ li.ui-state-default:last-child{
 
 .priority {
     height: 20px;
-    padding: 5px;
-    width: 20px;
+    width: 65px;
     float: right;
     margin-top: -50px;
-    border-radius: 50%;
-    background-color: #76d04b;
+
 }

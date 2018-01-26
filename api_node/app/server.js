@@ -64,13 +64,23 @@ console.log(serviceGet.init);
 router.get('/', serviceGet.init);
 
 router.route('/todos')
-    .post(servicePost)
+   // .post(servicePost)
     .get(serviceGet.getTodos);
+
+
+router.route('/todo/add/:name/:description/:priority')
+    .post(servicePost);
+
 
 router.route('/todo/:id')
     .get(serviceGet.getTodo)
     .put(serviceUpdate.updateTodo)
     .delete (serviceDelete.deleteTodo);
+
+router.route('todo/status/:id')
+    .put(serviceUpdate.updateTodo)
+
+
 
 app.use(`${API_CONFIG.path}${API_CONFIG.version}`, router);
 
